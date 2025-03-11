@@ -1,4 +1,5 @@
 const category_container = document.querySelector('#filter_options')
+const product_card = document.querySelector('#card_container')
 console.log(category_container);
 const products = [
     {
@@ -360,11 +361,11 @@ const categories = [
     // "womens-watches"
 ]
 
-categoryItem(categories, category_container)
-
+categoryItem(categories, category_container);
+loadProductsCards(products, product_card);
 
 function categoryItem(items, element) {
-    element.innerHTML = ""
+    element.innerHTML = "";
     for (let i = 0; i < items.length; i++) {
         const item = items[i];
         const template = `
@@ -372,10 +373,34 @@ function categoryItem(items, element) {
                 ${item}
             </button>
         `
-         
-        element.innerHTML += template
+
+        element.innerHTML += template;
     }
 
 }
 
+
+function loadProductsCards(items, element) {
+    element.innerHTML = "";
+    for (let i = 0; i < items.length; i++) {
+        const product = items[i];
+        console.log(product);
+        const template = `
+        <div class="shadow-xl w-80 rounded-md border border-gray-200 cursor-pointer" role="product card">
+                <figure class="w-full aspect-square overflow-hidden">
+                    <img src="${product.image}" alt="${product.title}" class="w-full object-cover ">
+                </figure>
+                <div aria-label="card content" class="px-4 pt-2 pb-4 border-t-1 flex flex-col gap-2 border-gray-300 text-gray-600">
+                    <h3 class="text-xl text-black">${product.title}</h3>  
+                    <p>Precio: $${product.price}</p> 
+                    <div class="flex  justify-between">
+                        <span>Stock: ${product.stock}</span>
+                        <span>Rating: ${product.rating}</span>
+                    </div>
+                </div>
+        </div>
+        `;
+        element.innerHTML += template;
+    }
+}
 
