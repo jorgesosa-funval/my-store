@@ -1,3 +1,5 @@
+const category_container = document.querySelector('#filter_options')
+console.log(category_container);
 const products = [
     {
         "id": 1,
@@ -340,21 +342,40 @@ const categories = [
     "kitchen-accessories",
     "laptops",
     "mens-shirts",
-    "mens-shoes",
-    "mens-watches",
-    "mobile-accessories",
-    "motorcycle",
-    "skin-care",
-    "smartphones",
-    "sports-accessories",
-    "sunglasses",
-    "tablets",
-    "tops",
-    "vehicle",
-    "womens-bags",
-    "womens-dresses",
-    "womens-jewellery",
-    "womens-shoes",
-    "womens-watches"
+    // "mens-shoes",
+    // "mens-watches",
+    // "mobile-accessories",
+    // "motorcycle",
+    // "skin-care",
+    // "smartphones",
+    // "sports-accessories",
+    // "sunglasses",
+    // "tablets",
+    // "tops",
+    // "vehicle",
+    // "womens-bags",
+    // "womens-dresses",
+    // "womens-jewellery",
+    // "womens-shoes",
+    // "womens-watches"
 ]
+
+categoryItem(categories, category_container)
+
+
+function categoryItem(items, element) {
+    element.innerHTML = ""
+    for (let i = 0; i < items.length; i++) {
+        const item = items[i];
+        const template = `
+            <button class="bg-gray-500 px-4 py-1 text-white rounded-md" value="${item}">
+                ${item}
+            </button>
+        `
+         
+        element.innerHTML += template
+    }
+
+}
+
 
