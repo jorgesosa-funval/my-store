@@ -1,3 +1,4 @@
+ 
 const calificaciones = [
     {
       subject: "Matemáticas",
@@ -32,7 +33,7 @@ const calificaciones = [
     {
       subject: "Geografía",
       icon: "./src/images/geografia.png",
-      score: 82
+      score: 64
     },
     {
       subject: "Educación Física",
