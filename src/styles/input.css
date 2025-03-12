@@ -5,5 +5,5 @@
 }
 
 .subjects-grid{
-    grid-template-columns: repeat(auto-fit, 7rem);
+    grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
 }
