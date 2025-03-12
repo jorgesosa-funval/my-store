@@ -6,6 +6,7 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-red-600: oklch(0.577 0.245 27.325);
     --color-blue-800: oklch(0.424 0.199 265.638);
     --color-gray-200: oklch(0.928 0.006 264.531);
     --color-gray-300: oklch(0.872 0.01 258.338);
@@ -14,6 +15,10 @@
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
+    --container-md: 28rem;
+    --container-lg: 32rem;
+    --text-sm: 0.875rem;
+    --text-sm--line-height: calc(1.25 / 0.875);
     --text-xl: 1.25rem;
     --text-xl--line-height: calc(1.75 / 1.25);
     --text-3xl: 1.875rem;
@@ -176,6 +181,12 @@
   }
 }
 @layer utilities {
+  .mx-auto {
+    margin-inline: auto;
+  }
+  .my-2 {
+    margin-block: calc(var(--spacing) * 2);
+  }
   .flex {
     display: flex;
   }
@@ -185,6 +196,9 @@
   .hidden {
     display: none;
   }
+  .table {
+    display: table;
+  }
   .aspect-square {
     aspect-ratio: 1 / 1;
   }
@@ -192,20 +206,68 @@
     width: calc(var(--spacing) * 6);
     height: calc(var(--spacing) * 6);
   }
+  .h-screen {
+    height: 100vh;
+  }
+  .w-4 {
+    width: calc(var(--spacing) * 4);
+  }
+  .w-4\/5 {
+    width: calc(4/5 * 100%);
+  }
+  .w-8 {
+    width: calc(var(--spacing) * 8);
+  }
+  .w-20 {
+    width: calc(var(--spacing) * 20);
+  }
+  .w-32 {
+    width: calc(var(--spacing) * 32);
+  }
+  .w-40 {
+    width: calc(var(--spacing) * 40);
+  }
   .w-80 {
     width: calc(var(--spacing) * 80);
   }
   .w-full {
     width: 100%;
   }
+  .w-screen {
+    width: 100vw;
+  }
+  .max-w-lg {
+    max-width: var(--container-lg);
+  }
+  .max-w-md {
+    max-width: var(--container-md);
+  }
+  .flex-1 {
+    flex: 1;
+  }
+  .flex-2 {
+    flex: 2;
+  }
+  .border-collapse {
+    border-collapse: collapse;
+  }
   .cursor-pointer {
     cursor: pointer;
+  }
+  .resize {
+    resize: both;
   }
   .flex-col {
     flex-direction: column;
   }
   .flex-wrap {
     flex-wrap: wrap;
+  }
+  .place-content-center {
+    place-content: center;
+  }
+  .items-center {
+    align-items: center;
   }
   .justify-between {
     justify-content: space-between;
@@ -218,6 +280,9 @@
   }
   .gap-3 {
     gap: calc(var(--spacing) * 3);
+  }
+  .gap-4 {
+    gap: calc(var(--spacing) * 4);
   }
   .gap-6 {
     gap: calc(var(--spacing) * 6);
@@ -245,11 +310,23 @@
   .bg-blue-800 {
     background-color: var(--color-blue-800);
   }
+  .bg-gray-300 {
+    background-color: var(--color-gray-300);
+  }
   .bg-gray-500 {
     background-color: var(--color-gray-500);
   }
+  .bg-white {
+    background-color: var(--color-white);
+  }
   .object-cover {
     object-fit: cover;
+  }
+  .p-1 {
+    padding: calc(var(--spacing) * 1);
+  }
+  .p-2 {
+    padding: calc(var(--spacing) * 2);
   }
   .p-4 {
     padding: calc(var(--spacing) * 4);
@@ -266,9 +343,16 @@
   .pb-4 {
     padding-bottom: calc(var(--spacing) * 4);
   }
+  .text-center {
+    text-align: center;
+  }
   .text-3xl {
     font-size: var(--text-3xl);
     line-height: var(--tw-leading, var(--text-3xl--line-height));
+  }
+  .text-sm {
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
   }
   .text-xl {
     font-size: var(--text-xl);
@@ -281,15 +365,32 @@
   .text-black {
     color: var(--color-black);
   }
+  .text-blue-800 {
+    color: var(--color-blue-800);
+  }
   .text-gray-600 {
     color: var(--color-gray-600);
+  }
+  .text-red-600 {
+    color: var(--color-red-600);
   }
   .text-white {
     color: var(--color-white);
   }
+  .underline {
+    text-decoration-line: underline;
+  }
+  .shadow-md {
+    --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 2px 4px -2px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
   .shadow-xl {
     --tw-shadow: 0 20px 25px -5px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 8px 10px -6px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .outline {
+    outline-style: var(--tw-outline-style);
+    outline-width: 1px;
   }
 }
 .cards-grid {
@@ -358,4 +459,9 @@
   syntax: "*";
   inherits: false;
   initial-value: 0 0 #0000;
+}
+@property --tw-outline-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
 }
