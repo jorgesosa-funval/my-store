@@ -91,7 +91,7 @@ function setPromedio(array, elmenetoHTML,ElementoImagenHTML) {
     let promedio = 0;
     let img = "./src/images/otorgar.png";
     let color = "text-green-500";
-    
+
     for (let i = 0; i < array.length; i++) {
         const subject = array[i];
         promedio+= subject.score / array.length;
