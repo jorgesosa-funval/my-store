@@ -14,44 +14,85 @@ const tasks = [
         completed: true
     },
 ]
+loadAllTasks()
 
 allButton.addEventListener('click', loadAllTasks);
 activeButton.addEventListener('click', loadActivesTasks);
 inactiveButton.addEventListener('click', loadInactivesTasks);
+tasksList.addEventListener('change', completeTask)
 
-
+/* Functions */
 function loadAllTasks() {
     tasksList.innerHTML = "";
     for (let i = 0; i < tasks.length; i++) {
         const task = tasks[i];
         let checked = ""
         let lineThrough = ""
-        if(task.completed === true){
+        if (task.completed === true) {
             checked = "checked"
             lineThrough = "line-through"
         }
         const template = `
-        <li class="flex justify-between pr-8 mb-2">
-                   <label for="${task.id}" class="flex gap-2 items-center ${lineThrough}">
-                       <input type="checkbox" id="${task.id}" class="size-4" ${checked}>
-                       ${task.title}
-                   </label>
-   
-                   <button class="cursor-pointer">
-                       Del
-                   </button>
-        </li>
-     `;
+            <li class="flex justify-between pr-8 mb-2">
+                <label for="${task.id}" class="flex gap-2 items-center ${lineThrough}">
+                    <input type="checkbox" id="${task.id}" class="size-4" ${checked}>
+                    ${task.title}
+                </label>
+            </li>
+        `;
         tasksList.innerHTML += template;
     }
 
 }
 
 function loadActivesTasks() {
-
+    tasksList.innerHTML = "";
+    for (let i = 0; i < tasks.length; i++) {
+        const task = tasks[i];
+        if (task.completed === false) {
+            const template = `
+                <li class="flex justify-between pr-8 mb-2">
+                    <label for="${task.id}" class="flex gap-2 items-center">
+                        <input type="checkbox" id="${task.id}" class="size-4">
+                        ${task.title}
+                    </label>
+                </li>
+            `;
+            tasksList.innerHTML += template;
+        }
+    }
 }
 
 function loadInactivesTasks() {
-
+    tasksList.innerHTML = "";
+    for (let i = 0; i < tasks.length; i++) {
+        const task = tasks[i];
+        if (task.completed === true) {
+            const template = `
+                <li class="flex justify-between pr-8 mb-2">
+                    <label for="${task.id}" class="flex gap-2 items-center line-through">
+                        <input type="checkbox" id="${task.id}" class="size-4" checked> 
+                        ${task.title}
+                    </label>
+        
+                    <button class="cursor-pointer">
+                        Del
+                    </button>
+                </li>
+            `;
+            tasksList.innerHTML += template;
+        }
+    }
 }
 
+function completeTask(event) {
+    const id = parseInt(event.target.id);
+
+    for (let i = 0; i < tasks.length; i++) {
+        const task = tasks[i];
+        if(task.id === id){
+            task.completed = !task.completed
+        }
+    }
+    loadAllTasks()
+}
